@@ -31,13 +31,11 @@ Build Super fast api resource
 ### Run Project
 ````
 1. composer create-project ozone-framework/ozone
-3. create .env file and copy data from .env.example
-4. Configure database in .env file
-5. Create Entity(Optional)
-6. Run Migration ::[vendor/bin/doctrine orm:schema-tool:update --force] from root folder
-7. Run Project :: php -S localhost:8000 -t public 
-8. Open Project on Browser [localhost:8000]
-9. Feel free for any queries.
+2. Configure database in .env file
+3. Run Migration ::[vendor/bin/doctrine orm:schema-tool:update --force] from root folder
+4. Run Project :: php -S localhost:8000 -t public 
+5. Open Project on Browser [localhost:8000]
+6. Feel free for any queries.
 ````
 
 ### Documentation
