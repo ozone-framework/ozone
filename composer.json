@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "ozone-core/framework": "^5.1",
+        "ozone-core/framework": "^5.1.*",
         "symfony/var-dumper": "^3.3"
     },
     "autoload": {
