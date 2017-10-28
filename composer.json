@@ -1,0 +1,31 @@
+{
+    "name": "ozone-framework/ozone",
+    "description": "The modular MVC framework",
+    "keywords": ["framework", "modules","Ozone php Framework","slim 3.0"],
+    "license": "MIT",
+    "type": "project",
+    "authors":[
+        {
+            "name":"Ozone Framework",
+            "email":"ozoneframework@gmail.com"
+        }
+    ],
+    "require": {
+        "ozone-core/framework": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app\\Modules",
+            "Acme\\": "app\\Acme"
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
