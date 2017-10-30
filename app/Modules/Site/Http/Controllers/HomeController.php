@@ -12,7 +12,7 @@ namespace App\Site\Http\Controllers {
 
         public function __construct(View $view)
         {
-            $this->view = $view
+            $this->view = $view;
         }
 
         public function index(Request $request, Response $response)
