@@ -32,8 +32,8 @@ namespace Config {
         public function definitions()
         {
             return [
-                'settings.displayErrorDetails' => (getenv('APP_ENV', false) == 'development') ? true : false,
-                'settings.debug' => (getenv('APP_DEBUG', false) == 'development') ? true : false,
+                'settings.displayErrorDetails' => (getenv('APP_ENV', 'production') == 'development') ? true : false,
+                'settings.debug' => getenv('APP_DEBUG', false),
                 Twig::class => function (ContainerInterface $container) {
                     $view = new Twig([],
                         [
