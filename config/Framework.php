@@ -18,7 +18,7 @@ namespace Config {
     use Doctrine\Common\EventManager;
     use Psr\Container\ContainerInterface;
     use Doctrine\ORM\Tools\Setup as ToolSetup;
-    use Dopesong\Slim\Error\Whoops as WhoopsError;
+    use Dopesong\Slim\Error\Whoops;
 
     class Framework extends App
     {
@@ -99,7 +99,7 @@ namespace Config {
                 },
                 'phpErrorHandler' => function (ContainerInterface $c) {
                     if ((getenv('APP_ENV', false) == 'development') ? true : false) {
-                        return new WhoopsError((getenv('APP_ENV', false) == 'development') ? true : false);
+                        return new Whoops();
                     }
                     return new RuntimeErrorHandler();
                 }

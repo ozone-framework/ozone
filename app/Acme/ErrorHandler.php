@@ -21,6 +21,20 @@ namespace Acme {
             $html = '<html>
                         <head>
                             <title>Error Occured</title>
+                            <style>
+                            @-webkit-keyframes blinker {
+                              from {opacity: 1.0;}
+                              to {opacity: 0.0;}
+                            }
+                            .blink{
+                                text-decoration: blink;
+                                -webkit-animation-name: blinker;
+                                -webkit-animation-duration: 0.6s;
+                                -webkit-animation-iteration-count:infinite;
+                                -webkit-animation-timing-function:ease-in-out;
+                                -webkit-animation-direction: alternate;
+                            }
+                            </style>
                         </head>
                         <body style="text-align: center;">
                             <div>
@@ -28,8 +42,8 @@ namespace Acme {
                                     <span style="color:darkgray;font-size: 260px;">500</span>
                                     <span style="color:darkseagreen;font-size: 60px;">Internal server Error</span>
                                 </p>
-                                <p style="color:dimgrey;font-size: 30px;">Oops something went wrong!</p>
-                                <p><a href="' . $basePath . '" style="color:lightseagreen;font-size:20px;text-decoration:none;">BACK TO HOME</a></p>
+                                <p><span style="color:dimgrey;font-size: 30px;">Please contact our web Admin  </span><span>Email:: '.getenv('TECH_EMAIL').'</span></p>
+                                <p class="blink"><a href="' . $basePath . '" style="color:lightseagreen;font-size:20px;text-decoration:none;">BACK TO HOME</a></p>
                             </div>
                         </body>
                     </html>';
