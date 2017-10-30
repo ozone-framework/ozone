@@ -8,11 +8,18 @@ class TablePrefix
 {
     protected $prefix = '';
 
+    /**
+     * TablePrefix constructor.
+     * @param $prefix
+     */
     public function __construct($prefix)
     {
         $this->prefix = (string) $prefix;
     }
 
+    /**
+     * @param LoadClassMetadataEventArgs $eventArgs
+     */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)
     {
         $classMetadata = $eventArgs->getClassMetadata();

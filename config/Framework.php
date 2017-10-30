@@ -2,18 +2,23 @@
 
 namespace Config {
 
+    use Acme\ErrorHandler;
+    use Acme\NotAllowedHandler;
+    use Acme\RuntimeErrorHandler;
     use Ozone\Token;
     use Slim\Views\Twig;
     use Acme\TablePrefix;
     use DI\Bridge\Slim\App;
-    use DI\ContainerBuilder;
     use Doctrine\ORM\Events;
+    use DI\ContainerBuilder;
+    use Acme\NotFoundHandler;
     use Slim\Views\TwigExtension;
     use Doctrine\ORM\EntityManager;
-    use Doctrine\Common\EventManager;
     use Slim\Flash\Messages as Flash;
+    use Doctrine\Common\EventManager;
     use Psr\Container\ContainerInterface;
     use Doctrine\ORM\Tools\Setup as ToolSetup;
+    use Dopesong\Slim\Error\Whoops as WhoopsError;
 
     class Framework extends App
     {
@@ -27,12 +32,13 @@ namespace Config {
         public function definitions()
         {
             return [
-                'settings.displayErrorDetails' => (getenv('APP_ENV') == 'development') ? true : false,
+                'settings.displayErrorDetails' => (getenv('APP_ENV', false) == 'development') ? true : false,
+                'settings.debug' => (getenv('APP_DEBUG', false) == 'development') ? true : false,
                 Twig::class => function (ContainerInterface $container) {
                     $view = new Twig([],
                         [
                             'cache' => ROOT . '../storage/cache/template',//ROOT . 'storage/Cache/twig'
-                            'debug' => true,
+                            'debug' => (getenv('APP_ENV', false) == 'development') ? true : false,
                         ]);
 
                     //Load View Module Wise
@@ -81,6 +87,21 @@ namespace Config {
                 },
                 Token::class => function () {
                     return new Token();
+                },
+                'notFoundHandler' => function (ContainerInterface $c) {
+                    return new NotFoundHandler();
+                },
+                'notAllowedHandler' => function (ContainerInterface $c) {
+                    return new NotAllowedHandler();
+                },
+                'errorHandler' => function (ContainerInterface $c) {
+                    return new ErrorHandler();
+                },
+                'phpErrorHandler' => function (ContainerInterface $c) {
+                    if ((getenv('APP_ENV', false) == 'development') ? true : false) {
+                        return new WhoopsError((getenv('APP_ENV', false) == 'development') ? true : false);
+                    }
+                    return new RuntimeErrorHandler();
                 }
             ];
         }

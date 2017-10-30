@@ -1,17 +1,26 @@
 {
     "name": "ozone-framework/ozone",
     "description": "The modular MVC framework",
-    "keywords": ["framework", "modules","Ozone php Framework","slim 3.0"],
+    "keywords": [
+        "framework",
+        "modules",
+        "Ozone php Framework",
+        "slim 3.0"
+    ],
     "license": "MIT",
     "type": "project",
-    "authors":[
+    "authors": [
         {
-            "name":"Ozone Framework",
-            "email":"ozoneframework@gmail.com"
+            "name": "Ozone Framework",
+            "email": "ozoneframework@gmail.com"
         }
     ],
     "require": {
         "ozone-core/framework": "^5.1",
+        "monolog/monolog": "^1.23"
+    },
+    "require-dev": {
+        "dopesong/slim-whoops": "^2.2",
         "symfony/var-dumper": "^3.3"
     },
     "autoload": {
