@@ -2,7 +2,7 @@
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\EventManager;
-use Acme\TablePrefix;
+use Core\TablePrefix;
 use Doctrine\ORM\Events;
 
 require __DIR__.'/../vendor/autoload.php';

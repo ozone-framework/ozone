@@ -1,4 +1,57 @@
 {% extends '@Site/layout.twig' %}
+{% block title %} Save Ozone {% endblock %}
+{% block styles %}
+    <style>
+        body{
+            margin:0px;
+            padding: 0px;
+        }
+        .wrapper {
+            text-align: center;
+            height: auto;
+            margin: auto;
+        }
+        .header {
+            font-size: 30px;
+            height:50px;
+            color: white;
+            padding:10px 0px 10px 0px;
+            text-align: center;
+            background-color: mediumseagreen;
+            border-bottom: 6px solid darkgreen;
+        }
+
+        .main {
+            font-size: 19px;
+            height:auto;
+            color: seagreen;
+            text-align: center;
+        }
+        a{
+            color:grey;
+            text-decoration:none;
+            font-size:20px;
+            font-weight: bold;
+        }
+        .creator{
+            color:grey;
+            font-size: 16px;
+        }
+        .author{
+            color:rosybrown;
+            font-size: 21px;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    <h1 class="main">Congratulation you did it !</h1>
+    <div class="wrapper">
+        <div class="header">
+            Ozone Framework
+        </div>
+        <div class="main">
+            <h3>Welcome to Ozone Framework!</h3>
+            {#Follow Documentation on <a href="http://www.ozoneframework.com" target="_blank">http://www.ozoneframework.com</a>#}
+            <p class="creator"><span>By </span><span class="author">@Raghu Raghav</span></p>
+        </div>
+    </div>
 {% endblock %}

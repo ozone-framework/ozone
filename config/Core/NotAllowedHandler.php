@@ -1,17 +1,17 @@
 <?php
 
-namespace Acme {
+namespace Core {
 
     use Psr\Http\Message\ResponseInterface as Response;
     use Psr\Http\Message\ServerRequestInterface as Request;
 
-    class NotFoundHandler
+    class NotAllowedHandler
     {
         public function __invoke(Request $request, Response $response)
         {
             $basePath = $request->getUri()->getBaseUrl();
             return $response
-                ->withStatus(404)
+                ->withStatus(405)
                 ->withHeader('Content-Type', 'text/html')
                 ->write($this->html($basePath));
         }
@@ -20,7 +20,7 @@ namespace Acme {
         {
             $html = '<html>
                         <head>
-                            <title>Page Not Found</title>
+                            <title>Method Not Allowed</title>
                             <style>
                             @-webkit-keyframes blinker {
                               from {opacity: 1.0;}
@@ -39,11 +39,11 @@ namespace Acme {
                         <body style="text-align: center;">
                             <div>
                                 <p>
-                                    <span style="color:darkgray;font-size: 260px;">404</span>
-                                    <span style="color:darkseagreen;font-size: 60px;">Page Not Found</span>
+                                    <span style="color:darkgray;font-size: 260px;">405</span>
+                                    <span style="color:darkseagreen;font-size: 60px;">Method not Allowed</span>
                                 </p>
-                                <p style="color:dimgrey;font-size: 30px;">The requested page was not found.</p>
-                                <p class="blink"><a href="' . $basePath . '" style="color:lightseagreen;font-size:19px;text-decoration:none;">BACK TO HOME</a></p>
+                                <p style="color:dimgrey;font-size: 30px;">Current method is not allowed.</p>
+                                <p class="blink"><a href="' . $basePath . '" style="color:lightseagreen;font-size:20px;text-decoration:none;">BACK TO HOME</a></p>
                             </div>
                         </body>
                     </html>';

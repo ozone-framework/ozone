@@ -35,7 +35,7 @@ $dotEnv->load();
  * */
 require_once ROOT . '../config/start.php';
 
-$app = new \Config\Framework();
+$app = new \Core\Framework();
 
 /*
  |==================================================================
@@ -43,6 +43,6 @@ $app = new \Config\Framework();
  |==================================================================
  |
  * */
-require_once ROOT . '../config/routes.php';
+require_once ROOT . '../config/Core/routes.php';
 
 $app->run();

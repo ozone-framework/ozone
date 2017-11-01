@@ -10,7 +10,6 @@ foreach ($_directories as $dir) {
 
     $routeDirs[] = $module;
 }
-//print_r($routeDirs);
 foreach ($routeDirs as $route){
     $routePath = '../'.$route.'/routes.php';
     if(file_exists($routePath)){

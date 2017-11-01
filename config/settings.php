@@ -32,7 +32,7 @@ return [
         'meta' => [
             'entity_path' => $entityDirs,
             'auto_generate_proxies' => true,
-            'proxy_dir' => ROOT . '../storage/cache/proxies',
+            'proxy_dir' => __DIR__ . '../storage/cache/proxies',
             'cache' => null,
         ],
         'connection' => [

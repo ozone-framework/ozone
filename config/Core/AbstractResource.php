@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme {
+namespace Core {
 
     use Doctrine\ORM\EntityManager;
 

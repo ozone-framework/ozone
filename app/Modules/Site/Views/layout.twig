@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ozone Php Framework</title>
+    <title>{% block title %}Ozone Php Framework{% endblock %} </title>
     <link rel="stylesheet" href="{{ base_url() }}/resources/css/style.css">
+    {% block styles %}{% endblock %}
 </head>
 <body>
 
 <div class="main">
     {% block content %}{% endblock %}
 </div>
+{% block scripts %}{% endblock %}
 </body>
 </html>

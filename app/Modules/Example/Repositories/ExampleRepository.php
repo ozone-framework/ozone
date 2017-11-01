@@ -2,7 +2,7 @@
 
 namespace App\Main\Repositories {
 
-    use Acme\AbstractResource;
+    use Core\AbstractResource;
     use App\Example\Entity\Example;
 
     class ExampleRepository extends AbstractResource
@@ -13,15 +13,15 @@ namespace App\Main\Repositories {
          */
         public function findAll()
         {
-            $banners = $this->em->getRepository(Example::class)->findAll();
-            $banners = array_map(
-                function ($photo) {
-                    return $photo->getArrayCopy();
+            $examples = $this->em->getRepository(Example::class)->findAll();
+            $examples = array_map(
+                function ($examples) {
+                    return $examples->getArrayCopy();
                 },
-                $banners
+                $examples
             );
 
-            return $banners;
+            return $examples;
         }
 
         /**
@@ -30,11 +30,11 @@ namespace App\Main\Repositories {
          */
         public function find($slug = null)
         {
-            $banner = $this->em->getRepository(Example::class)->findOneBy(
+            $example = $this->em->getRepository(Example::class)->findOneBy(
                 array('slug' => $slug)
             );
-            if ($banner) {
-                return $banner->getArrayCopy();
+            if ($example) {
+                return $example->getArrayCopy();
             }
         }
     }

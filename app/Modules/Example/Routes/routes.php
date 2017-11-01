@@ -7,5 +7,5 @@
  |
  */
 $app->group('/example', function () {
-    $this->get('/', ['App\\Example\\Http\\Controllers\\ExampleController', 'index'])->setName('example');
+    $this->get('', ['App\\Example\\Http\\Controllers\\ExampleController', 'index'])->setName('example');
 });
