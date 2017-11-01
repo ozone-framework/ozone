@@ -1,0 +1,11 @@
+<?php
+
+/*
+ |==================================================================
+ | Console Command to run server
+ |==================================================================
+ |
+ * */
+
+require 'vendor/autoload.php';
+require 'config/console-runner.php';

@@ -46,5 +46,18 @@ return [
                 'collate' => 'utf8_unicode_ci'
             ]
         ]
+    ],
+    'commands'=>[
+
+    ],
+    /*
+     |==================================================================
+     | Encryption Keys
+     |==================================================================
+     |
+     * */
+    'encryption' => [
+        'secret_key'=>',i-t]aNgl4;FTPxco,AIKN(`):S0b6',
+        'secret_iv'=>'A4o[PH>i=s+1GVPg&>^EYImP=^nLd5'
     ]
 ];

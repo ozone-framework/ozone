@@ -17,7 +17,6 @@ define('ROOT', getcwd() . '/');
  |
  * */
 require_once ROOT . '../vendor/autoload.php';
-
 /*
  |==================================================================
  | Environment File

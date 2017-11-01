@@ -1,4 +1,5 @@
 <?php
+
 use Ozone\Token;
 use Slim\Views\Twig;
 use Core\TablePrefix;
@@ -7,11 +8,12 @@ use Doctrine\ORM\Events;
 use Core\NotFoundHandler;
 use Core\NotAllowedHandler;
 use Slim\Views\TwigExtension;
-use Core\RuntimeErrorHandler;
-use Dopesong\Slim\Error\Whoops;
 use Doctrine\ORM\EntityManager;
-use Slim\Flash\Messages as Flash;
+use Dopesong\Slim\Error\Whoops;
 use Doctrine\Common\EventManager;
+use Slim\Flash\Messages as Flash;
+use Acme\Twig\TwigFilterExtension;
+use Acme\Twig\TwigFunctionExtension;
 use Psr\Container\ContainerInterface;
 use Doctrine\ORM\Tools\Setup as ToolSetup;
 
@@ -22,16 +24,22 @@ return [
         return new NotFoundHandler();
     },
     'notAllowedHandler' => function (ContainerInterface $c) {
+        if ((getenv('APP_ENV', false) == 'development') ? true : false) {
+            return new Whoops();
+        }
         return new NotAllowedHandler();
     },
     'errorHandler' => function (ContainerInterface $c) {
+        if ((getenv('APP_ENV', false) == 'development') ? true : false) {
+            return new Whoops();
+        }
         return new ErrorHandler();
     },
     'phpErrorHandler' => function (ContainerInterface $c) {
         if ((getenv('APP_ENV', false) == 'development') ? true : false) {
             return new Whoops();
         }
-        return new RuntimeErrorHandler();
+        return new ErrorHandler();
     },
     Twig::class => function (ContainerInterface $container) {
         $view = new Twig([],
@@ -56,6 +64,12 @@ return [
             $container->get('router'),
             $container->get('request')->getUri()
         ));
+
+        //FILTER
+        $view->getEnvironment()->addExtension(new TwigFilterExtension());
+
+        //FUNCTION
+        $view->getEnvironment()->addExtension(new TwigFunctionExtension());
 
         return $view;
     },
@@ -93,6 +107,7 @@ return [
     \Acme\DemoClass::class => function () {
         //This is just demo dependency injection of class please remove it and define your own injection class.
         return new \Acme\DemoClass();
-    },
+    }
+
 
 ];
