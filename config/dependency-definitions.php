@@ -12,8 +12,8 @@ use Doctrine\ORM\EntityManager;
 use Dopesong\Slim\Error\Whoops;
 use Doctrine\Common\EventManager;
 use Slim\Flash\Messages as Flash;
-use Acme\Twig\TwigFilterExtension;
-use Acme\Twig\TwigFunctionExtension;
+use App\Acme\Twig\TwigFilterExtension;
+use App\Acme\Twig\TwigFunctionExtension;
 use Psr\Container\ContainerInterface;
 use Doctrine\ORM\Tools\Setup as ToolSetup;
 
@@ -42,19 +42,20 @@ return [
         return new ErrorHandler();
     },
     Twig::class => function (ContainerInterface $container) {
+        $modulePath = ROOT . '../app/Modules/';
         $view = new Twig([],
             [
                 'cache' => ROOT . '../storage/cache/template',//ROOT . 'storage/Cache/twig'
                 'debug' => (getenv('APP_ENV', false) == 'development') ? true : false,
             ]);
 
-        $_directories = glob(self::$modulePath . "*");
+        $_directories = glob($modulePath . "*");
 
         foreach ($_directories as $dir) {
 
             $_viewPath = $dir . '/Views/';
             if (is_dir($_viewPath)) {
-                $view->getLoader()->addPath($_viewPath, str_replace(self::$modulePath, '', $dir));
+                $view->getLoader()->addPath($_viewPath, str_replace($modulePath, '', $dir));
             }
             // Module Path
             $moduleDirs[] = $dir;
@@ -80,17 +81,17 @@ return [
         $settings = include ROOT . '../config/settings.php';
 
         $config = ToolSetup::createAnnotationMetadataConfiguration(
-            $settings['doctrine']['meta']['entity_path'],
-            $settings['doctrine']['meta']['auto_generate_proxies'],
-            $settings['doctrine']['meta']['proxy_dir'],
-            $settings['doctrine']['meta']['cache'],
+            $settings['database']['meta']['entity_path'],
+            $settings['database']['meta']['auto_generate_proxies'],
+            $settings['database']['meta']['proxy_dir'],
+            $settings['database']['meta']['cache'],
             false
         );
         //Table Prefix Event Listner
         $tablePrefix = new TablePrefix(getenv('DB_PREFIX', ''));
         $evm->addEventListener(Events::loadClassMetadata, $tablePrefix);
 
-        return EntityManager::create($settings['doctrine']['connection'], $config, $evm);
+        return EntityManager::create($settings['database']['connection'], $config, $evm);
     },
     Flash::class => function () {
         return new Flash();
@@ -104,10 +105,8 @@ return [
      |---------------------------------------------------------------------------------------------
      |
      */
-    \Acme\DemoClass::class => function () {
+    \App\Acme\DemoClass::class => function () {
         //This is just demo dependency injection of class please remove it and define your own injection class.
-        return new \Acme\DemoClass();
+        return new \App\Acme\DemoClass();
     }
-
-
 ];

@@ -26,15 +26,9 @@ require_once ROOT . '../vendor/autoload.php';
 $dotEnv = new Dotenv\Dotenv('../');
 $dotEnv->load();
 
-/*
- |==================================================================
- | Bootstrap file
- |==================================================================
- |
- * */
-require_once ROOT . '../config/start.php';
-
 $app = new \Core\Framework();
+
+$app->add(\Core\AppMiddleware::class);
 
 /*
  |==================================================================

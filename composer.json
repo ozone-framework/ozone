@@ -25,8 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app\\Modules",
-      "Acme\\": "app\\Acme",
+      "App\\": "app",
       "Core\\": "config\\Core"
     }
   },

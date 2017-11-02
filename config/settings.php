@@ -1,38 +1,27 @@
 <?php
-/*
-  |==================================================================
-  | Autoload Entity Folder from module directory.
-  |==================================================================
-  |
-  * */
-$modulePath = getcwd() . '/app/Modules/';
-$_directories = glob($modulePath . "*");
-$entityDirs = [];
 
-foreach ($_directories as $dir) {
-
-    $modules = str_replace($modulePath, '', $dir);
-    $entity = 'app/Modules/' . $modules . '/Entity';
-
-    if (is_dir($entity)) {
-        $entityDirs[] = $entity;
-    }
-}
-
+require_once 'Core/Helpers.php';
 
 return [
 
+    'app' => [
+
+    ],
+    'template' => [
+
+    ],
     /*
      |==================================================================
-     | Doctrine Orm Configuration
+     | Doctrine ORM Configuration
      |==================================================================
      |
      * */
-    'doctrine' => [
+    'database' => [
+
         'meta' => [
-            'entity_path' => $entityDirs,
+            'entity_path' => getDir(getcwd() . '/app/Modules/', 'Entity'),
             'auto_generate_proxies' => true,
-            'proxy_dir' => __DIR__ . '../storage/cache/proxies',
+            'proxy_dir' => getcwd() . '../storage/cache/proxies',
             'cache' => null,
         ],
         'connection' => [
@@ -42,12 +31,12 @@ return [
             'user' => getenv('DB_USERNAME', 'root'),
             'password' => getenv('DB_PASSWORD', ''),
             'defaultDatabaseOptions' => [
-                'charset' => 'utf8',
-                'collate' => 'utf8_unicode_ci'
+                'charset' => getenv('DB_CHARSET', 'utf8'),
+                'collate' => getenv('DB_COLLATE', 'utf8_unicode_ci')
             ]
         ]
     ],
-    'commands'=>[
+    'commands' => [
 
     ],
     /*
@@ -57,7 +46,26 @@ return [
      |
      * */
     'encryption' => [
-        'secret_key'=>',i-t]aNgl4;FTPxco,AIKN(`):S0b6',
-        'secret_iv'=>'A4o[PH>i=s+1GVPg&>^EYImP=^nLd5'
+        'secret_key' => ',i-t]aNgl4;FTPxco,AIKN(`):S0b6',
+        'secret_iv' => 'A4o[PH>i=s+1GVPg&>^EYImP=^nLd5'
+    ],
+    /*
+     |==================================================================
+     | Allowed Ips
+     |==================================================================
+     |
+     * */
+    'allowed_ips' => [
+        '123.345.567',
+    ],
+    /*
+     |==================================================================
+     | Blocked Ips
+     |==================================================================
+     |
+     * */
+    'blocked_ips' => [
+        '123.345.567',
     ]
+
 ];

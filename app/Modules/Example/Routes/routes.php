@@ -7,5 +7,5 @@
  |
  */
 $app->group('/example', function () {
-    $this->get('', ['App\\Example\\Http\\Controllers\\ExampleController', 'index'])->setName('example')->add(\Acme\Middleware\Auth::class);
+    $this->get('', ['App\\Example\\Http\\Controllers\\ExampleController', 'index'])->setName('example')->add(\Acme\Middleware\AppMiddleware::class);
 });

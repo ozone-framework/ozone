@@ -27,10 +27,10 @@ $dotEnv->load();
 $settings = include 'settings.php';
 
 $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
-    $settings['doctrine']['meta']['entity_path'],
-    $settings['doctrine']['meta']['auto_generate_proxies'],
-    $settings['doctrine']['meta']['proxy_dir'],
-    $settings['doctrine']['meta']['cache'],
+    $settings['database']['meta']['entity_path'],
+    $settings['database']['meta']['auto_generate_proxies'],
+    $settings['database']['meta']['proxy_dir'],
+    $settings['database']['meta']['cache'],
     false
 );
 
@@ -39,6 +39,6 @@ $evm = new EventManager();
 $tablePrefix = new TablePrefix(getenv('DB_PREFIX',''));
 $evm->addEventListener(Events::loadClassMetadata, $tablePrefix);
 
-$em = EntityManager::create($settings['doctrine']['connection'], $config,$evm);
+$em = EntityManager::create($settings['database']['connection'], $config,$evm);
 
 return ConsoleRunner::createHelperSet($em);

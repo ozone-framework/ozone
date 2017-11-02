@@ -7,8 +7,9 @@ namespace Core {
 
     class Framework extends App
     {
-        protected static $modulePath = ROOT . '../app/Modules/';
-
+        /**
+         * @param ContainerBuilder $builder
+         */
         protected function configureContainer(ContainerBuilder $builder)
         {
             $builder->addDefinitions(require ROOT . '../config/dependency-definitions.php');

@@ -1,2 +1,2 @@
 <?php
-require 'helpers.php';
+require 'Core/Helpers.php';
