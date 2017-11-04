@@ -20,9 +20,6 @@ namespace App\Example\Http\Controllers {
 
         public function index(Request $request, Response $response)
         {
-            echo "<pre>";
-            $data = $this->example->findAll();
-            dd($data);
             return $this->view->render($response, '@Example/example/index.twig');
         }
     }

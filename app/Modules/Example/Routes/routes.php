@@ -1,4 +1,5 @@
 <?php
+use App\Example\Http\Middlewares\ExampleMiddleware;
 /*
  |====================================================================================================
  | FRONTEND ROUTES
@@ -7,5 +8,5 @@
  |
  */
 $app->group('/example', function () {
-    $this->get('', ['App\\Example\\Http\\Controllers\\ExampleController', 'index'])->setName('example')->add(\Acme\Middleware\AppMiddleware::class);
-});
+    $this->get('', ['App\\Example\\Http\\Controllers\\ExampleController', 'index'])->setName('example');
+})->add(ExampleMiddleware::class);
