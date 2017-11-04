@@ -1,9 +1,9 @@
 <?php
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use Doctrine\ORM\EntityManager;
-use Doctrine\Common\EventManager;
 use Core\TablePrefix;
 use Doctrine\ORM\Events;
+use Doctrine\ORM\EntityManager;
+use Doctrine\Common\EventManager;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
 require __DIR__.'/../vendor/autoload.php';
 

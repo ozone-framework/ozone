@@ -25,10 +25,10 @@ class AppMiddleware
         $arguments = $route->getArguments();
         $this->get('view')->getEnvironment()->addGlobal('metadata', $metadata);
         */
-        $loopback = ['localhost','127.0.0.1'];
+        $loopBck = ['localhost','127.0.0.1'];
         $currentHost = $request->getUri()->getHost();
 
-        if (!in_array($currentHost, $loopback) and getenv('APP_ENV') == 'development') {
+        if (!in_array($currentHost, $loopBck) and getenv('APP_ENV') == 'development') {
             $response->getBody()->write($this->htmlError());
         } else {
 
@@ -38,11 +38,11 @@ class AppMiddleware
         return $response;
     }
 
-    public function htmlError($basePath='/')
+    public function htmlError()
     {
         $html = '<html>
                         <head>
-                            <title>Page Not Found</title>
+                            <title>Configuration Error</title>
                             <style>
                             @-webkit-keyframes blinker {
                               from {opacity: 1.0;}

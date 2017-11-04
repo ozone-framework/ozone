@@ -26,7 +26,7 @@ require_once ROOT . '../vendor/autoload.php';
 $dotEnv = new Dotenv\Dotenv('../');
 $dotEnv->load();
 
-$app = new \Core\Framework();
+$app = new \Core\Ozone();
 
 $app->add(\Core\AppMiddleware::class);
 
