@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Main\Repositories {
+namespace App\Example\Repositories {
 
     use Core\AbstractResource;
     use App\Example\Entity\Example;

@@ -43,9 +43,10 @@ namespace App\Example\Http\Middlewares {
                 'Contact',
                 'Portfolio'
             ];// Data from Database
-            $this->twig->getEnvironment()->addGlobal('menus', $menu);
-            $response = $next($request, $response);
 
+            $this->twig->getEnvironment()->addGlobal('menus', $menu);
+
+            $response = $next($request, $response);
             return $response;
         }
 

@@ -5,10 +5,28 @@ require_once 'Core/Helpers.php';
 return [
 
     'app' => [
-
+        'settings.httpVersion' => '1.1',
+        'settings.responseChunkSize' => 4096,
+        'settings.outputBuffering' => 'append',
+        'settings.determineRouteBeforeAppMiddleware' => false,
+        'settings.displayErrorDetails' => (getenv('APP_ENV', 'production') == 'development') ? true : false,
+        'settings.debug' => getenv('APP_DEBUG', false),
+        'settings.addContentLengthHeader' => true,
+        'settings.routerCacheFile' => false,
+        'settings' => [
+            'httpVersion' => DI\get('settings.httpVersion'),
+            'responseChunkSize' => DI\get('settings.responseChunkSize'),
+            'outputBuffering' => DI\get('settings.outputBuffering'),
+            'determineRouteBeforeAppMiddleware' => DI\get('settings.determineRouteBeforeAppMiddleware'),
+            'displayErrorDetails' => DI\get('settings.displayErrorDetails'),
+            'addContentLengthHeader' => DI\get('settings.addContentLengthHeader'),
+            'routerCacheFile' => DI\get('settings.routerCacheFile'),
+        ],
     ],
     'template' => [
-
+        'cache' => ROOT . '../storage/cache/template',//ROOT . 'storage/Cache/twig'
+        'debug' => (getenv('APP_ENV', false) == 'development') ? true : false,
+        'auto_reload'=>(getenv('APP_ENV', false) == 'development') ? true : false
     ],
     /*
      |==================================================================
@@ -36,6 +54,12 @@ return [
             ]
         ]
     ],
+    /*
+     |==================================================================
+     | Commands Class
+     |==================================================================
+     |
+     * */
     'commands' => [
 
     ],
@@ -56,7 +80,7 @@ return [
      |
      * */
     'allowed_ips' => [
-        '123.345.567',
+        //'123.345.567'
     ],
     /*
      |==================================================================
@@ -65,7 +89,6 @@ return [
      |
      * */
     'blocked_ips' => [
-        '123.345.567',
+        //'123.345.567',
     ]
-
 ];

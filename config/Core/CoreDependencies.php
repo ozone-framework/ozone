@@ -13,18 +13,18 @@ use App\Acme\Twig\TwigFilterExtension;
 use App\Acme\Twig\TwigFunctionExtension;
 use Doctrine\ORM\Tools\Setup as ToolSetup;
 
-return [
+$settings = require ROOT.'../config/settings.php';
 
+return [
+    $settings['app'],
     /*
      |---------------------------------------------------------------
      | Doctrine Entity Manager
      |---------------------------------------------------------------
      */
-    EntityManager::class => function () {
+    EntityManager::class => function () use($settings) {
 
         $evm = new EventManager();
-
-        $settings = include ROOT . '../config/settings.php';
 
         $config = ToolSetup::createAnnotationMetadataConfiguration(
             $settings['database']['meta']['entity_path'],
@@ -44,13 +44,10 @@ return [
      | Twig Template Engine
      |---------------------------------------------------------------
      */
-    Twig::class => function (ContainerInterface $container) {
+    Twig::class => function (ContainerInterface $container) use($settings){
         $modulePath = ROOT . '../app/Modules/';
-        $view = new Twig([],
-            [
-                'cache' => ROOT . '../storage/cache/template',//ROOT . 'storage/Cache/twig'
-                'debug' => (getenv('APP_ENV', false) == 'development') ? true : false,
-            ]);
+
+        $view = new Twig([],$settings['template']);
 
         $_directories = glob($modulePath . "*");
 

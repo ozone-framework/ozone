@@ -2,10 +2,11 @@
 
 namespace App\Example\Http\Controllers {
 
-    use App\Main\Repositories\ExampleRepository;
+    use Slim\Views\Twig as View;
+    use DI\Annotation\Injectable;
+    use App\Example\Repositories\ExampleRepository;
     use Psr\Http\Message\ResponseInterface as Response;
     use Psr\Http\Message\ServerRequestInterface as Request;
-    use Slim\Views\Twig as View;
 
     class ExampleController
     {

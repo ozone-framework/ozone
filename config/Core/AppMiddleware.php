@@ -38,6 +38,16 @@ class AppMiddleware
         return $response;
     }
 
+    public function checkIps()
+    {
+
+    }
+
+    public function isMaintenanceMode()
+    {
+
+    }
+
     public function htmlError()
     {
         $html = '<html>
@@ -64,11 +74,12 @@ class AppMiddleware
                                     <span style="color:darkgray;font-size: 260px;">403</span>
                                     <span style="color:darkseagreen;font-size: 60px;">Forbidden</span>
                                 </p>
-                                <p style="color:dimgrey;font-size: 27px;">Change environment variable to production. Your app seems in production level</p>
+                                <p style="color:mediumvioletred;font-size: 25px;">Change environment variable to production. Your app seems in production level</p>
                                 <p class="blink"><span style="color:lightseagreen;font-size:19px;text-decoration:none;">GOOD LUCK</span></p>
                             </div>
                         </body>
                     </html>';
         return $html;
     }
+
 }

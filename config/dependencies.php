@@ -7,31 +7,28 @@ use Dopesong\Slim\Error\Whoops;
 use Psr\Container\ContainerInterface;
 
 return [
-
-    'settings.displayErrorDetails' => (getenv('APP_ENV', 'production') == 'development') ? true : false,
-    'settings.debug' => getenv('APP_DEBUG', false),
     /*
      |---------------------------------------------------------------------------------------------
      | Error Handler File
      |---------------------------------------------------------------------------------------------
      |
      */
-    'notFoundHandler' => function (ContainerInterface $c) {
+    'notFoundHandler' => function (ContainerInterface $container) {
         return new NotFoundHandler();
     },
-    'notAllowedHandler' => function (ContainerInterface $c) {
+    'notAllowedHandler' => function (ContainerInterface $container) {
         if ((getenv('APP_ENV', false) == 'development') ? true : false) {
             return new Whoops();
         }
         return new NotAllowedHandler();
     },
-    'errorHandler' => function (ContainerInterface $c) {
+    'errorHandler' => function (ContainerInterface $container) {
         if ((getenv('APP_ENV', false) == 'development') ? true : false) {
             return new Whoops();
         }
         return new ErrorHandler();
     },
-    'phpErrorHandler' => function (ContainerInterface $c) {
+    'phpErrorHandler' => function (ContainerInterface $container) {
         if ((getenv('APP_ENV', false) == 'development') ? true : false) {
             return new Whoops();
         }

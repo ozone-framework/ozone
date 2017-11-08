@@ -32,5 +32,4 @@ class TwigFilterExtension extends Twig_Extension
         return $price;
     }
 
-
 }
