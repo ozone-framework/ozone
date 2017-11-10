@@ -36,6 +36,6 @@ $app->add(\Core\AppMiddleware::class);
  |==================================================================
  |
  * */
-require_once ROOT . '../config/Core/routes.php';
+require_once ROOT . '../config/Core/Routes.php';
 
 $app->run();
