@@ -1,0 +1,12 @@
+{% extends '@Site/layout.twig' %}
+{% block title %} Example Modules{% endblock %}
+{% block content %}
+    <h1>Validate</h1>
+    <form action="{{ path_for('validate.post') }}" method="post" enctype="multipart/form-data">
+        Name:: <input type="text" name="name" value="{{ old('name') }}"><br/>
+        <p style="color:red;">{{ error('Name') }}</p>
+        Email:: <input type="text" name="email" value="{{ old('email') }}"><br>
+        <p style="color:red;">{{ error('Email') }}</p>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}
