@@ -16,8 +16,8 @@
     }
   ],
   "require": {
-    "ozone-core/framework": "^5.1.0",
-    "monolog/monolog": "^1.23"
+    "monolog/monolog": "^1.23",
+    "ozone-core/framework": "dev-master"
   },
   "require-dev": {
     "dopesong/slim-whoops": "^2.2",
@@ -34,9 +34,6 @@
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ],
     "post-install-cmd": [
-      "composer dump-autoload"
-    ],
-    "post-update-cmd": [
       "composer dump-autoload"
     ]
   },
