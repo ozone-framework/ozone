@@ -37,7 +37,7 @@
       "composer dump-autoload"
     ],
     "post-update-cmd": [
-      "composer dump-autoload" //Here too
+      "composer dump-autoload"
     ]
   }
 }
