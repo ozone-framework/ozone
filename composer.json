@@ -17,7 +17,7 @@
   ],
   "require": {
     "monolog/monolog": "^1.23",
-    "ozone-core/framework": "dev-master"
+    "ozone-core/framework": "^5.1"
   },
   "require-dev": {
     "dopesong/slim-whoops": "^2.2",
