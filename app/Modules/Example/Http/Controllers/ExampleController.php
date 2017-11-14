@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Example\Http\Controllers {
+namespace App\Modules\Example\Http\Controllers {
 
     use Ozone\Validate;
     use Slim\Views\Twig as View;
-    use App\Example\Repositories\ExampleRepository;
+    use App\Modules\Example\Repositories\ExampleRepository;
     use Psr\Http\Message\ResponseInterface as Response;
     use Psr\Http\Message\ServerRequestInterface as Request;
 

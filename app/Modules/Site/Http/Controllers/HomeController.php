@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Site\Http\Controllers {
+namespace App\Modules\Site\Http\Controllers {
 
     use Slim\Views\Twig as View;
     use Psr\Http\Message\ResponseInterface as Response;

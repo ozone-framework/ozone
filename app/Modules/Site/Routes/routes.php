@@ -7,5 +7,5 @@
  |
  */
 $app->group('', function () {
-    $this->get('/', ['App\\Site\\Http\\Controllers\\HomeController', 'index'])->setName('home');
+    $this->get('/', ['App\\Modules\\Site\\Http\\Controllers\\HomeController', 'index'])->setName('home');
 });
