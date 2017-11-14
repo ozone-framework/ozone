@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Example\Http\Middlewares {
+namespace App\Modules\Example\Http\Middlewares {
 
 
     use Slim\Views\Twig;
