@@ -25,8 +25,8 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app",
-      "Core\\": "config\\Core"
+      "App\\": "app/",
+      "Core\\": "config/Core/"
     }
   },
   "scripts": {
