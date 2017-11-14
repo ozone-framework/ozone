@@ -35,6 +35,9 @@
     ],
     "post-install-cmd": [
       "composer dump-autoload"
+    ],
+    "post-update-cmd": [
+        "composer dump-autoload"
     ]
   },
   "config": {
