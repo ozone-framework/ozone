@@ -3,7 +3,7 @@
 namespace App\Modules\Example\Repositories {
 
     use Core\AbstractResource;
-    use App\Example\Entity\Example;
+    use App\Modules\Example\Entity\Example;
 
     class ExampleRepository extends AbstractResource
     {

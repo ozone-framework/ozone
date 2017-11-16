@@ -3,9 +3,9 @@
 namespace App\Modules\Example\Http\Controllers {
 
     use Ozone\Validate;
-    use Slim\Views\Twig as View;
-    use App\Modules\Example\Repositories\ExampleRepository;
+    use Core\View as View;
     use Psr\Http\Message\ResponseInterface as Response;
+    use App\Modules\Example\Repositories\ExampleRepository;
     use Psr\Http\Message\ServerRequestInterface as Request;
 
     class ExampleController
@@ -21,7 +21,7 @@ namespace App\Modules\Example\Http\Controllers {
 
         public function index(Request $request, Response $response)
         {
-            return $this->view->render($response, '@Example/example/index.twig');
+            return $this->view->display($response, '@Example/example/index.twig');
         }
 
         public function validate(Request $request, Response $response)
@@ -29,11 +29,9 @@ namespace App\Modules\Example\Http\Controllers {
             $input =$request->getParsedBody();
             $files = $request->getUploadedFiles();
 
-
             $data = [];
 
             if ($request->getMethod() == 'POST') {
-//                dd($files['image']);
                 Validate::str($input['name'], 'Name', 'required|min:3|max:4');
                 Validate::email($input['email'], 'Email', 'required');
 
@@ -41,7 +39,7 @@ namespace App\Modules\Example\Http\Controllers {
                     dd(dd($input));
                 }
             }
-            return $this->view->render($response, '@Example/example/validate.twig',$data);
+            return $this->view->display($response, '@Example/example/validate.twig',$data);
         }
     }
 

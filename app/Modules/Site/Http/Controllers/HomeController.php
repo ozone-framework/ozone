@@ -2,7 +2,7 @@
 
 namespace App\Modules\Site\Http\Controllers {
 
-    use Slim\Views\Twig as View;
+    use Core\View as View;
     use Psr\Http\Message\ResponseInterface as Response;
     use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -17,7 +17,7 @@ namespace App\Modules\Site\Http\Controllers {
 
         public function index(Request $request, Response $response)
         {
-            return $this->view->render($response, '@Site/home/index.twig');
+            return $this->view->display($response, '@Site/home/index.twig');
         }
     }
 
