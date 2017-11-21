@@ -16,6 +16,7 @@ namespace Core {
             $userDefinitions = require ROOT . '../config/dependencies.php';
 
             $builder->addDefinitions(array_merge($coreDefinitions,$userDefinitions));
+            $builder->useAnnotations(true);
         }
 
     }

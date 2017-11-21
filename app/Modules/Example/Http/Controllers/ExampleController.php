@@ -3,25 +3,23 @@
 namespace App\Modules\Example\Http\Controllers {
 
     use Ozone\Validate;
-    use Core\View as View;
+    use Core\Controller;
     use Psr\Http\Message\ResponseInterface as Response;
-    use App\Modules\Example\Repositories\ExampleRepository;
     use Psr\Http\Message\ServerRequestInterface as Request;
+    use App\Modules\Example\Repositories\ExampleRepository;
 
-    class ExampleController
+    class ExampleController extends Controller
     {
-        protected $view;
         protected $example;
 
-        public function __construct(View $view, ExampleRepository $exampleRepository)
+        public function __construct(ExampleRepository $exampleRepository)
         {
-            $this->view = $view;
             $this->example = $exampleRepository;
         }
 
         public function index(Request $request, Response $response)
         {
-            return $this->view->display($response, '@Example/example/index.twig');
+            return $this->view($response, '@Example/example/index.twig');
         }
 
         public function validate(Request $request, Response $response)
@@ -36,10 +34,12 @@ namespace App\Modules\Example\Http\Controllers {
                 Validate::email($input['email'], 'Email', 'required');
 
                 if (Validate::isFine()) {
-                    dd(dd($input));
+                    return $response->withRedirect($this->pathFor('home'));
                 }
             }
-            return $this->view->display($response, '@Example/example/validate.twig',$data);
+
+            return $this->view($response, '@Example/example/validate.twig',$data);
+
         }
     }
 
