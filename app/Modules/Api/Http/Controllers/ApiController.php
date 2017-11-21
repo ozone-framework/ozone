@@ -2,10 +2,11 @@
 
 namespace App\Modules\Api\Http\Controllers {
 
+    use Core\Controller;
     use Psr\Http\Message\ResponseInterface as Response;
     use Psr\Http\Message\ServerRequestInterface as Request;
 
-    class ApiController
+    class ApiController extends Controller
     {
         /**
          * @param Request $request

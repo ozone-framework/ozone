@@ -37,14 +37,14 @@ class TwigFunctionExtension extends Twig_Extension
         return new Flash();
     }
 
+
     /**
      * @param $inputName
-     * @param bool $valueReset
      * @return string
      */
-    public function oldInputFunction($inputName, $valueReset = false)
+    public function oldInputFunction($inputName)
     {
-        return Validate::rePopulate($inputName, $valueReset);
+        return Validate::rePopulate($inputName);
     }
 
     /**
