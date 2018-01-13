@@ -6,7 +6,7 @@
 |
 * */
 if (!function_exists('getDir')) {
-    function getDir($path,$folderName)
+    function getDir($path, $folderName)
     {
         $_directories = glob($path . "*");
         $dirs = [];
@@ -14,7 +14,7 @@ if (!function_exists('getDir')) {
         foreach ($_directories as $dir) {
 
             $modules = str_replace($path, '', $dir);
-            $dir = $path . $modules . '/'.$folderName;
+            $dir = $path . $modules . '/' . $folderName;
 
             if (is_dir($dir)) {
                 $dirs[] = $dir;
@@ -46,4 +46,35 @@ if (!function_exists('d')) {
         $args = func_get_args();
         call_user_func_array('dump', $args);
     }
+}
+
+if (!function_exists('flash')) {
+
+    function flash($key, $message, $sticky = false, $redirect = null)
+    {
+        $flash = new \Core\FlashMessage();
+
+        switch ($key) {
+
+            case 'success':
+                $flash->success("<i class='fa fa-check-square-o'></i> " . $message, $redirect, $sticky);
+                break;
+
+            case 'error':
+                $flash->error("<i class='fa fa-warning'></i> " . $message, $redirect, $sticky);
+                break;
+
+            case 'warning':
+                $flash->warning("<i class='fa fa-warning'></i> " . $message, $redirect, $sticky);
+                break;
+
+            case 'info':
+                $flash->info("<i class='fa fa-info-circle'></i> " . $message, $redirect, $sticky);
+                break;
+
+            default :
+                break;
+        }
+    }
+
 }

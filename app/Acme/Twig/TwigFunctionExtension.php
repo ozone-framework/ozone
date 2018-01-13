@@ -2,11 +2,11 @@
 
 namespace App\Acme\Twig;
 
+use Core\FlashMessage;
 use Ozone\Token;
 use Ozone\Validate;
-use Twig_Function;
 use Twig_Extension;
-use Slim\Flash\Messages as Flash;
+use Twig_Function;
 
 class TwigFunctionExtension extends Twig_Extension
 {
@@ -17,9 +17,9 @@ class TwigFunctionExtension extends Twig_Extension
     {
         return [
             new Twig_Function('csrf', array($this, 'csrfFunction')),
-            new Twig_Function('flash', array($this, 'flashFunction')),
             new Twig_Function('old', array($this, 'oldInputFunction')),
             new Twig_Function('error', array($this, 'errorFunction')),
+            new Twig_Function('flashMessage', array($this, 'flashMessage')),
         ];
     }
 
@@ -28,15 +28,6 @@ class TwigFunctionExtension extends Twig_Extension
     {
         return Token::csrf();
     }
-
-    /**
-     * @return Flash
-     */
-    public function flashFunction()
-    {
-        return new Flash();
-    }
-
 
     /**
      * @param $inputName
@@ -55,4 +46,27 @@ class TwigFunctionExtension extends Twig_Extension
     {
         return Validate::GetError($displayName);
     }
+
+    public function flashMessage()
+    {
+        $flash = new FlashMessage();
+        $msg = $flash::defaultType;
+
+        if ($flash->hasMessages($flash::INFO)) {
+            $msg = $flash::INFO;
+
+        } elseif ($flash->hasMessages($flash::SUCCESS)) {
+            $msg = $flash::SUCCESS;
+
+        } elseif ($flash->hasMessages($flash::ERROR)) {
+            $msg = $flash::ERROR;
+
+        } elseif ($flash->hasMessages($flash::WARNING)) {
+            $msg = $flash::WARNING;
+
+        }
+
+        return $flash->display([$msg]);
+    }
+
 }

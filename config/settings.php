@@ -24,7 +24,7 @@ return [
         ],
     ],
     'template' => [
-        'cache' => ROOT . '../storage/cache/template',//ROOT . 'storage/Cache/twig'
+        'cache' => __DIR__ . '/../storage/cache/template',//ROOT . 'storage/Cache/twig'
         'debug' => (getenv('APP_ENV', false) == 'development') ? true : false,
         'auto_reload'=>(getenv('APP_ENV', false) == 'development') ? true : false
     ],
@@ -39,7 +39,7 @@ return [
         'meta' => [
             'entity_path' => getDir(getcwd() . '/app/Modules/', 'Entity'),
             'auto_generate_proxies' => true,
-            'proxy_dir' => getcwd() . '../storage/cache/proxies',
+            'proxy_dir' => getcwd() . '/../storage/cache/proxies',
             'cache' => null,
         ],
         'connection' => [
